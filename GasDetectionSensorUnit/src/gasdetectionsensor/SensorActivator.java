@@ -69,6 +69,14 @@ public void RunTest(EmergServiceInterface emergencyServices) {
 					}
 				}while(runAgain == true);
 				
+				System.out.println("Test run is completed!!!");
+				System.out.println("Do you want to deactivate emergency system now?(Y/N)");
+				userInput = sc.next();
+				
+				if(userInput.equals("Y") || userInput.equals("y")) {
+					
+					emergencyServices.SwitchOffEmergencySystem();
+				}
 				
 				//Close the sc Object to avoid the resource leaks
 				sc.close();

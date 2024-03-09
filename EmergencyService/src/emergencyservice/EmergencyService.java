@@ -124,7 +124,7 @@ public class EmergencyService implements EmergServiceInterface {
 	}
 
 	@Override
-	public void SwitchOffFireEmergencySystem() {
+	public void SwitchOffEmergencySystem() {
 		// TODO Auto-generated method stub
 		System.out.println("Emergency System is deactivated");
 		ActivateFireAlarm("off");
