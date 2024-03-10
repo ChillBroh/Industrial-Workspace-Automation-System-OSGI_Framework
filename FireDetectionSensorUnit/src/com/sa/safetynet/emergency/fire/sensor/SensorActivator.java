@@ -1,4 +1,4 @@
-package firedectionsensor;
+package com.sa.safetynet.emergency.fire.sensor;
 
 import java.util.Scanner;
 
@@ -6,7 +6,7 @@ import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 
-import emergencyservice.EmergServiceInterface;
+import com.sa.safetynet.emergency.service.EmergServiceInterface;
 
 public class SensorActivator implements BundleActivator {
 
@@ -19,11 +19,11 @@ public class SensorActivator implements BundleActivator {
 		EmergServiceInterface emergencyServices = (EmergServiceInterface)context.getService(serviceReference);
 		
 		//Run test class to simulate an emergency situation
-		RunTest(emergencyServices);
+		runTest(emergencyServices);
 		
 	}
 	
-	public void RunTest(EmergServiceInterface emergencyServices) {
+	public void runTest(EmergServiceInterface emergencyServices) {
 		
 		//Variables
 				String emrgType = "fire";
@@ -49,8 +49,8 @@ public class SensorActivator implements BundleActivator {
 				if(userInput.equals("Y") || userInput.equals("y")) {
 					
 					//Using services provided by the Emergency Services through OSGI framework 
-					emergencyServices.SendNotification(emrgType);
-					emergencyServices.ActivateEmergencyProtocol(location);
+					emergencyServices.sendNotification(emrgType);
+					emergencyServices.activateEmergencyProtocol(location);
 					runAgain = false;
 				}else if(userInput.equals("N") || userInput.equals("n")) {
 					runAgain = false;
@@ -76,7 +76,7 @@ public class SensorActivator implements BundleActivator {
 				
 				if(userInput.equals("Y") || userInput.equals("y")) {
 					
-					emergencyServices.SwitchOffEmergencySystem();
+					emergencyServices.switchOffEmergencySystem();
 				}
 				
 				//Close the sc Object to avoid the resource leaks

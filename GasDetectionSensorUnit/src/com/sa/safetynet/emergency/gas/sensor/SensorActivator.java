@@ -1,4 +1,4 @@
-package gasdetectionsensor;
+package com.sa.safetynet.emergency.gas.sensor;
 
 import java.util.Scanner;
 
@@ -6,7 +6,7 @@ import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 
-import emergencyservice.EmergServiceInterface;
+import com.sa.safetynet.emergency.service.EmergServiceInterface;
 
 public class SensorActivator implements BundleActivator {
 
@@ -19,11 +19,11 @@ public void start(BundleContext context) throws Exception {
 		EmergServiceInterface emergencyServices = (EmergServiceInterface)context.getService(serviceReference);
 		
 		//Run test class to simulate an emergency situation
-		RunTest(emergencyServices);
+		runTest(emergencyServices);
 	}
 
 
-public void RunTest(EmergServiceInterface emergencyServices) {
+public void runTest(EmergServiceInterface emergencyServices) {
 		
 		
 		//Variables
@@ -52,8 +52,8 @@ public void RunTest(EmergServiceInterface emergencyServices) {
 					if(userInput.equals("Y") || userInput.equals("y")) {
 						
 						//Using services provided by the Emergency Services through OSGI framework 
-						emergencyServices.SendNotification(emrgType);
-						emergencyServices.ActivateEmergencyProtocol(location);
+						emergencyServices.sendNotification(emrgType);
+						emergencyServices.activateEmergencyProtocol(location);
 						runAgain = false;
 					}else if(userInput.equals("N") || userInput.equals("n")) {
 						runAgain = false;
@@ -75,7 +75,7 @@ public void RunTest(EmergServiceInterface emergencyServices) {
 				
 				if(userInput.equals("Y") || userInput.equals("y")) {
 					
-					emergencyServices.SwitchOffEmergencySystem();
+					emergencyServices.switchOffEmergencySystem();
 				}
 				
 				//Close the sc Object to avoid the resource leaks

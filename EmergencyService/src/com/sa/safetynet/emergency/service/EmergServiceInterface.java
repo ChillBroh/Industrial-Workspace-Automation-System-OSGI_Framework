@@ -1,8 +1,8 @@
-package emergencyservice;
+package com.sa.safetynet.emergency.service;
 
 public interface EmergServiceInterface {
-	public void SendNotification(String emrgType);
-	public void ActivateEmergencyProtocol(String location);
-	public void SwitchOffEmergencySystem();
+	public void sendNotification(String emrgType);
+	public void activateEmergencyProtocol(String location);
+	public void switchOffEmergencySystem();
 	
 }

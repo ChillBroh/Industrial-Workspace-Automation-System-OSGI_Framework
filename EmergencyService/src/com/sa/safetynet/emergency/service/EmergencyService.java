@@ -1,4 +1,4 @@
-package emergencyservice;
+package com.sa.safetynet.emergency.service;
 
 public class EmergencyService implements EmergServiceInterface, EmergencyCheckInterface {
 	
@@ -7,7 +7,7 @@ public class EmergencyService implements EmergServiceInterface, EmergencyCheckIn
 	boolean isEmerg;
 	
 	
-	public void OverrideDoorLocks(String command) {
+	public void overrideDoorLocks(String command) {
 		// TODO Auto-generated method stub
 		if(command.equals("off")) {
 			// TODO Access & invoke DoorLockOverride(String command) in Door Lock module
@@ -22,39 +22,39 @@ public class EmergencyService implements EmergServiceInterface, EmergencyCheckIn
 	}
 
 	
-	public void OverridePowerToFireSuppression(String command) {
+	public void overridePowerToFireSuppression(String command) {
 		// TODO Access & invoke FireSuppresionPower(String command,String location) in power module
 		
 		System.out.println("FireSuppression Activated in " + location);
 	}
 
 	
-	public void OverridePowerToVentilationSystem(String command) {
+	public void overridePowerToVentilationSystem(String command) {
 		// TODO Access & invoke EmergencyVentilationPower(String command, String location) in power module
 		System.out.println("Ventilation System Activated in " + location);
 	}
 
 	
-	public void OverrideACControll(String command) {
+	public void overrideACControll(String command) {
 		// TODO Access & invoke ACPowerOverride(String location, String command) in weather module
 		
 		System.out.println("AC power " + command + " at "+location);
 	}
 
 	
-	public void OverrideHeatControll(String command) {
+	public void overrideHeatControll(String command) {
 		// TODO Access & invoke HeatPowerOverride(String location, String command) in weather module
 		System.out.println("Heat power " + command + " at "+location);
 	}
 
 	
-	public void OverrideLightControll(String command) {
+	public void overrideLightControll(String command) {
 		// TODO Access & invoke LightPowerOverride(String location, String command) in weather module
 		System.out.println("Light power " + command + " at "+location);
 	}
 
 
-	public void SwitchRedLights(String command) {
+	public void switchRedLights(String command) {
 		
 		if(command.equals("on")) {
 			// TODO Access & invoke AlarmLightPower(String location, String command) in Power module
@@ -71,7 +71,7 @@ public class EmergencyService implements EmergServiceInterface, EmergencyCheckIn
 	
 
 	@Override
-	public void SendNotification(String emrgType) {
+	public void sendNotification(String emrgType) {
 		// TODO Auto-generated method stub
 		
 		this.emrgType = emrgType;
@@ -81,7 +81,7 @@ public class EmergencyService implements EmergServiceInterface, EmergencyCheckIn
 	}
 
 	@Override
-	public void ActivateEmergencyProtocol(String location) {
+	public void activateEmergencyProtocol(String location) {
 		// TODO Auto-generated method stub
 		this.location = location;
 		isEmerg = true;
@@ -90,17 +90,17 @@ public class EmergencyService implements EmergServiceInterface, EmergencyCheckIn
 		
 		if(emrgType.equals("fire")) {
 			
-			ActivateFireAlarm("on");
-			SwitchRedLights("on");
-			OverridePowerToFireSuppression("on");
-			OverrideDoorLocks("off");
+			activateFireAlarm("on");
+			switchRedLights("on");
+			overridePowerToFireSuppression("on");
+			overrideDoorLocks("off");
 			
 		}else if(emrgType.equals("gas")) {
 			
-			ActivateFireAlarm("on");
-			SwitchRedLights("on");
-			OverridePowerToVentilationSystem("on");
-			OverrideDoorLocks("off");
+			activateFireAlarm("on");
+			switchRedLights("on");
+			overridePowerToVentilationSystem("on");
+			overrideDoorLocks("off");
 		}else {
 			System.out.println("Emergency Type is not recognizable!!");
 		}
@@ -109,7 +109,7 @@ public class EmergencyService implements EmergServiceInterface, EmergencyCheckIn
 	}
 
 	
-	public void ActivateFireAlarm(String command) {
+	public void activateFireAlarm(String command) {
 		// TODO Access & invoke EmergencyAlarmPower(String command, String location) in power module
 		
 		if(command.equals("off")) {
@@ -127,17 +127,17 @@ public class EmergencyService implements EmergServiceInterface, EmergencyCheckIn
 	}
 
 	@Override
-	public void SwitchOffEmergencySystem() {
+	public void switchOffEmergencySystem() {
 		// TODO Auto-generated method stub
 		System.out.println("Emergency System is deactivated");
-		ActivateFireAlarm("off");
-		OverrideDoorLocks("on");
-		SwitchRedLights("off");
-		OverridePowerToFireSuppression("off");
-		OverridePowerToVentilationSystem("off");
-		OverrideACControll("off");
-		OverrideHeatControll("off");
-		OverrideLightControll("on");
+		activateFireAlarm("off");
+		overrideDoorLocks("on");
+		switchRedLights("off");
+		overridePowerToFireSuppression("off");
+		overridePowerToVentilationSystem("off");
+		overrideACControll("off");
+		overrideHeatControll("off");
+		overrideLightControll("on");
 		isEmerg = false;
 		
 	}

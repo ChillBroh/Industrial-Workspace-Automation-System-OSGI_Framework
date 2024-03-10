@@ -1,4 +1,4 @@
-package emergencyservice;
+package com.sa.safetynet.emergency.service;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
