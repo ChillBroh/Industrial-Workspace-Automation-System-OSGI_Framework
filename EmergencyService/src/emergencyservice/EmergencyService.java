@@ -1,9 +1,10 @@
 package emergencyservice;
 
-public class EmergencyService implements EmergServiceInterface {
+public class EmergencyService implements EmergServiceInterface, EmergencyCheckInterface {
 	
 	String emrgType;
 	String location;
+	boolean isEmerg;
 	
 	
 	public void OverrideDoorLocks(String command) {
@@ -83,6 +84,8 @@ public class EmergencyService implements EmergServiceInterface {
 	public void ActivateEmergencyProtocol(String location) {
 		// TODO Auto-generated method stub
 		this.location = location;
+		isEmerg = true;
+		
 		System.out.println(emrgType + " emergency detected in " + location);
 		
 		if(emrgType.equals("fire")) {
@@ -135,7 +138,15 @@ public class EmergencyService implements EmergServiceInterface {
 		OverrideACControll("off");
 		OverrideHeatControll("off");
 		OverrideLightControll("on");
+		isEmerg = false;
 		
+	}
+
+
+	@Override
+	public boolean isEmergency() {
+		// TODO Auto-generated method stub
+		return isEmerg;
 	}
 
 }
