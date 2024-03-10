@@ -1,11 +1,19 @@
 package com.sa.safetynet.emergency.service;
 
+/*
+ * IT21223594 - Thalangama T.P - Y3S2-WE-2.1
+ * 
+ */
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceReference;
+
+import com.sa.safetynet.power.EmergencyHelper;
+
 public class EmergencyService implements EmergServiceInterface, EmergencyCheckInterface {
 	
 	String emrgType;
 	String location;
 	boolean isEmerg;
-	
 	
 	public void overrideDoorLocks(String command) {
 		// TODO Auto-generated method stub
@@ -23,15 +31,15 @@ public class EmergencyService implements EmergServiceInterface, EmergencyCheckIn
 
 	
 	public void overridePowerToFireSuppression(String command) {
-		// TODO Access & invoke FireSuppresionPower(String command,String location) in power module
+		//Access & invoke FireSuppresionPower(String command,String location) in power module
+		EmergencyServiceActivator.emergPower.FireSuppresionPower( location, command);
 		
-		System.out.println("FireSuppression Activated in " + location);
 	}
 
 	
 	public void overridePowerToVentilationSystem(String command) {
-		// TODO Access & invoke EmergencyVentilationPower(String command, String location) in power module
-		System.out.println("Ventilation System Activated in " + location);
+		//Access & invoke EmergencyVentilationPower(String command, String location) in power module
+		EmergencyServiceActivator.emergPower.EmergencyVentilationPower(location, command);
 	}
 
 	
@@ -55,20 +63,15 @@ public class EmergencyService implements EmergServiceInterface, EmergencyCheckIn
 
 
 	public void switchRedLights(String command) {
-		
-		if(command.equals("on")) {
-			// TODO Access & invoke AlarmLightPower(String location, String command) in Power module
-			System.out.println("Red Light power " + command + " at "+location);
-		}
-		else if(command.equals("off")) {
-			// TODO Access & invoke AlarmLightPower(String location, String command) in Power module
-			System.out.println("Red Light power " + command + " at "+location);
-		}else {
-			System.out.println("Invalid command at Switch Red Lights!");
-		}
+		EmergencyServiceActivator.emergPower.AlarmLightPower(location, command);
 	}
 	
+	public void activateFireAlarm(String command) {
+		//Access & invoke EmergencyAlarmPower(String command, String location) in power module
+		EmergencyServiceActivator.emergPower.EmergencyAlarmPower(location, command);
 	
+		
+	}
 
 	@Override
 	public void sendNotification(String emrgType) {
@@ -76,8 +79,13 @@ public class EmergencyService implements EmergServiceInterface, EmergencyCheckIn
 		
 		this.emrgType = emrgType;
 		System.out.println("Emregency System Activated!! Emergency type : " + emrgType);
-		
-		
+			
+	}
+	
+	@Override
+	public boolean isEmergency() {
+		// TODO Auto-generated method stub
+		return isEmerg;
 	}
 
 	@Override
@@ -108,23 +116,6 @@ public class EmergencyService implements EmergServiceInterface, EmergencyCheckIn
 		
 	}
 
-	
-	public void activateFireAlarm(String command) {
-		// TODO Access & invoke EmergencyAlarmPower(String command, String location) in power module
-		
-		if(command.equals("off")) {
-			
-			System.out.println("Fire Alarm power " + command + " at "+location);
-		}
-		else if(command.equals("on")) {
-			
-			System.out.println("Fire Alarms activated in " + location);
-		}else {
-			System.out.println("Invalid command at Activate Fire Alarm!");
-		}
-		
-		
-	}
 
 	@Override
 	public void switchOffEmergencySystem() {
@@ -142,11 +133,5 @@ public class EmergencyService implements EmergServiceInterface, EmergencyCheckIn
 		
 	}
 
-
-	@Override
-	public boolean isEmergency() {
-		// TODO Auto-generated method stub
-		return isEmerg;
-	}
 
 }

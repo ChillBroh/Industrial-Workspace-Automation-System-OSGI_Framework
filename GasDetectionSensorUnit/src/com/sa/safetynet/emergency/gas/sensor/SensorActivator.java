@@ -26,7 +26,7 @@ public void start(BundleContext context) throws Exception {
 public void runTest(EmergServiceInterface emergencyServices) {
 		
 		
-		//Variables
+				//Variables
 				String emrgType = "gas";
 				String userInput;
 				String location;

@@ -1,5 +1,9 @@
 package com.sa.safetynet.emergency.fire.sensor;
 
+/*
+ * IT21223594 - Thalangama T.P - Y3S2-WE-2.1
+ * 
+ */
 import java.util.Scanner;
 
 import org.osgi.framework.BundleActivator;
@@ -25,7 +29,7 @@ public class SensorActivator implements BundleActivator {
 	
 	public void runTest(EmergServiceInterface emergencyServices) {
 		
-		//Variables
+				//Variables
 				String emrgType = "fire";
 				String userInput;
 				
