@@ -18,12 +18,12 @@ public class EmergencyService implements EmergServiceInterface {
 	public void overrideDoorLocks(String command) {
 		// TODO Auto-generated method stub
 		if(command.equals("off")) {
-			// TODO Access & invoke DoorLockOverride(String command) in Door Lock module
-			System.out.println("Door lock protocols are overrided and unlocked in " + location);
+			//Access & invoke DoorLockOverride(String command) in Door Lock module
+			EmergencyServiceActivator.overrideDoor.DoorLockOverride("active", location);
 		}
 		else if(command.equals("on")) {
-			// TODO Access & invoke DoorLockOverride(String command) in Door Lock module
-			System.out.println("Door lock protocols are restored and locked in " + location);
+			//Access & invoke DoorLockOverride(String command) in Door Lock module
+			EmergencyServiceActivator.overrideDoor.DoorLockOverride("inactive", location);
 		}else {
 			System.out.println("Invalid command at Door lock override!");
 		}
@@ -84,6 +84,7 @@ public class EmergencyService implements EmergServiceInterface {
 	
 	public void emergencyState() {
 		// TODO Auto-generated method stub
+		
 		EmergencyServiceActivator.setAlert.setEmergAlert(isEmerg);
 	}
 

@@ -10,6 +10,7 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 import org.osgi.framework.ServiceRegistration;
 
+import com.sa.safetynet.accesscontroller.autodoorsystem.EmergencyDoorHelper;
 import com.sa.safetynet.alert.SetAlertInterface;
 import com.sa.safetynet.power.EmergencyHelper;
 import com.sa.safetynet.weather.EmergencyWeatherHelper;
@@ -22,10 +23,12 @@ public class EmergencyServiceActivator implements BundleActivator {
 	ServiceReference emergServiceReference;
 	ServiceReference emergWeatherReference;
 	ServiceReference setEmergAlertReference;
+	ServiceReference emergDoorReference;
 	
 	public static EmergencyWeatherHelper emergWeather;
 	public static EmergencyHelper emergPower;
 	public static SetAlertInterface setAlert;
+	public static EmergencyDoorHelper overrideDoor;
 	
 	public void start(BundleContext context) throws Exception {
 		
@@ -47,13 +50,19 @@ public class EmergencyServiceActivator implements BundleActivator {
 		emergWeatherReference = context.getServiceReference(EmergencyWeatherHelper.class.getName());
 		EmergencyWeatherHelper emergencyWeatherService = (EmergencyWeatherHelper) context.getService(emergWeatherReference);
 		
+		//Getting emergency services available to Emergency service module from AlertEmergencyPublisher module by accessing OSGI service registry
 		setEmergAlertReference = context.getServiceReference(SetAlertInterface.class.getName());
 		SetAlertInterface setAlertService = (SetAlertInterface) context.getService(setEmergAlertReference);
+		
+		//Getting emergency services available to Emergency service module from AutomatedDoorSystemPublisher module by accessing OSGI service registry
+		emergDoorReference = context.getServiceReference(EmergencyDoorHelper.class.getName());
+		EmergencyDoorHelper emergDoorService = (EmergencyDoorHelper) context.getService(emergDoorReference);
 		
 		// Assigning the received service instance to a static variable for direct access without the need for instantiating an object of this class.
 		emergPower = emergencyPowerServices;
 		emergWeather = emergencyWeatherService;
 		setAlert = setAlertService;
+		overrideDoor = emergDoorService;
 		
 	}
 

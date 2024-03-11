@@ -2,7 +2,7 @@ package com.sa.safetynet.alert;
 
 public class AlertController implements SetAlertInterface, GetAlertInterface {
 	
-	private boolean isEmerg = false;
+	private static boolean isEmerg = false;
 	@Override
 	public boolean getEmergState() {
 		// TODO Auto-generated method stub
@@ -12,6 +12,7 @@ public class AlertController implements SetAlertInterface, GetAlertInterface {
 	@Override
 	public void setEmergAlert(boolean state) {
 		// TODO Auto-generated method stub
+		
 		isEmerg = state;
 	}
 

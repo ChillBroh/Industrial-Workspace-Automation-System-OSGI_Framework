@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: com.sa.safetynet.accesscontroller.facedetection
+Bundle-SymbolicName: FaceDetectionSubscriber
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.sa.safetynet.accesscontroller.facedetection.FaceDetectionActivator
+Export-Package: com.sa.safetynet.accesscontroller.facedetection
+Import-Package: com.sa.safetynet.accesscontroller.autodoorsystem,
+ com.sa.safetynet.accesscontroller.empdetection,
+ com.sa.safetynet.accesscontroller.notificationsystem,
+ com.sa.safetynet.power,
+ org.osgi.framework;version="1.3.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+

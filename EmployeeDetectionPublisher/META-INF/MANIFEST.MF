@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: com.sa.safetynet.accesscontroller.empdetection
+Bundle-SymbolicName: EmployeeDetectionPublisher
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.sa.safetynet.accesscontroller.empdetection.EmployeeDetectionActivator
+Export-Package: com.sa.safetynet.accesscontroller.empdetection
+Import-Package: org.osgi.framework;version="1.3.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+
