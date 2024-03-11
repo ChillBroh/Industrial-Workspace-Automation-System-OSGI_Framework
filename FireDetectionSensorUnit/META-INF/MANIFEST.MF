@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: FireDectionSensor
-Bundle-SymbolicName: FireDectionSensorSubscriber
+Bundle-SymbolicName: FireDetectionSensorSubscriber
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: com.sa.safetynet.emergency.fire.sensor.SensorActivator
 Bundle-RequiredExecutionEnvironment: JavaSE-17

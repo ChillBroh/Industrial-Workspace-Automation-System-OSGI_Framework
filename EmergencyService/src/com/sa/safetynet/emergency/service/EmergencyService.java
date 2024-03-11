@@ -9,7 +9,7 @@ import org.osgi.framework.ServiceReference;
 
 import com.sa.safetynet.power.EmergencyHelper;
 
-public class EmergencyService implements EmergServiceInterface, EmergencyCheckInterface {
+public class EmergencyService implements EmergServiceInterface {
 	
 	String emrgType;
 	String location;
@@ -45,20 +45,19 @@ public class EmergencyService implements EmergServiceInterface, EmergencyCheckIn
 	
 	public void overrideACControll(String command) {
 		// TODO Access & invoke ACPowerOverride(String location, String command) in weather module
-		
-		System.out.println("AC power " + command + " at "+location);
+		EmergencyServiceActivator.emergWeather.ACPowerOverride(location, command);
 	}
 
 	
 	public void overrideHeatControll(String command) {
 		// TODO Access & invoke HeatPowerOverride(String location, String command) in weather module
-		System.out.println("Heat power " + command + " at "+location);
+		EmergencyServiceActivator.emergWeather.HeatPowerOverride(location, command);
 	}
 
 	
 	public void overrideLightControll(String command) {
 		// TODO Access & invoke LightPowerOverride(String location, String command) in weather module
-		System.out.println("Light power " + command + " at "+location);
+		EmergencyServiceActivator.emergWeather.LightPowerOverride(location, command);
 	}
 
 
@@ -82,10 +81,10 @@ public class EmergencyService implements EmergServiceInterface, EmergencyCheckIn
 			
 	}
 	
-	@Override
-	public boolean isEmergency() {
+	
+	public void emergencyState() {
 		// TODO Auto-generated method stub
-		return isEmerg;
+		EmergencyServiceActivator.setAlert.setEmergAlert(isEmerg);
 	}
 
 	@Override
@@ -93,13 +92,16 @@ public class EmergencyService implements EmergServiceInterface, EmergencyCheckIn
 		// TODO Auto-generated method stub
 		this.location = location;
 		isEmerg = true;
-		
+		emergencyState();
 		System.out.println(emrgType + " emergency detected in " + location);
 		
 		if(emrgType.equals("fire")) {
 			
 			activateFireAlarm("on");
 			switchRedLights("on");
+			overrideACControll("off");
+			overrideHeatControll("off");
+			overrideLightControll("off");
 			overridePowerToFireSuppression("on");
 			overrideDoorLocks("off");
 			
@@ -107,6 +109,9 @@ public class EmergencyService implements EmergServiceInterface, EmergencyCheckIn
 			
 			activateFireAlarm("on");
 			switchRedLights("on");
+			overrideACControll("off");
+			overrideHeatControll("off");
+			overrideLightControll("off");
 			overridePowerToVentilationSystem("on");
 			overrideDoorLocks("off");
 		}else {
@@ -126,10 +131,11 @@ public class EmergencyService implements EmergServiceInterface, EmergencyCheckIn
 		switchRedLights("off");
 		overridePowerToFireSuppression("off");
 		overridePowerToVentilationSystem("off");
-		overrideACControll("off");
-		overrideHeatControll("off");
+		overrideACControll("on");
+		overrideHeatControll("on");
 		overrideLightControll("on");
 		isEmerg = false;
+		emergencyState();
 		
 	}
 

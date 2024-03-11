@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Weather
+Bundle-SymbolicName: WeathersServicePublisher
+Bundle-Version: 1.0.0.qualifier
+Export-Package: com.sa.safetynet.weather
+Bundle-Activator: com.sa.safetynet.weather.Activator
+Bundle-Vendor: SA
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Automatic-Module-Name: com.sa.safetynet.weather
+Import-Package: com.sa.safetynet.alert,
+ com.sa.safetynet.power,
+ org.osgi.framework;version="1.3.0"
+Bundle-ActivationPolicy: lazy

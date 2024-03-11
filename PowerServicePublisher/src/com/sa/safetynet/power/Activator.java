@@ -5,9 +5,9 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 import org.osgi.framework.ServiceRegistration;
 
-import com.sa.safetynet.emergency.service.EmergServiceInterface;
+//import com.sa.safetynet.emergency.service.EmergServiceInterface;
 
-import weatherpublisher.WeatherService;
+//import weatherpublisher.WeatherService;
 
 public class Activator implements BundleActivator {
 	ServiceRegistration serviceRegistration;
@@ -24,9 +24,9 @@ public class Activator implements BundleActivator {
 		serviceRegistration = bundleContext.registerService(PowerService.class.getName(), powerService, null);
 		emergServiceRegistration = bundleContext.registerService(EmergencyHelper.class.getName(), emrgPowerService, null);
 		
-		serviceReference = bundleContext.getServiceReference(WeatherService.class.getName());
-		WeatherService weatherService = (WeatherService)bundleContext.getService(serviceReference);
-		System.out.println(weatherService.Sunshining());
+		//serviceReference = bundleContext.getServiceReference(WeatherService.class.getName());
+		//WeatherService weatherService = (WeatherService)bundleContext.getService(serviceReference);
+		//System.out.println(weatherService.Sunshining());
 	}
 
 	public void stop(BundleContext bundleContext) throws Exception {
