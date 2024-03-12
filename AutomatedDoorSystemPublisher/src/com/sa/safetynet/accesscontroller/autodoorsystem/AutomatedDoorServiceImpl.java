@@ -19,7 +19,7 @@ public class AutomatedDoorServiceImpl implements AutomatedDoorService, Emergency
             public void run() {
                 doorLock(location);
             }
-        }, 50 * 1000);
+        }, 30 * 1000);
 		
 		
 	}
