@@ -22,7 +22,18 @@ public class DetectionServiceImpl implements DetectionService{
 
 	@Override
 	public boolean checkValidity(String id, String password) {
+		
+	if (userTable.containsKey(id)) {
+            String Password = userTable.get(id);
+            if (password.equals(Password)) {
+            	return true; 
+            }else {
+            	return false;
+            }
+	}else {
 		return false;
+	}
+		
 	}
 
 }

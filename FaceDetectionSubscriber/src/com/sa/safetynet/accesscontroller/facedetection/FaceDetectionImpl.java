@@ -3,10 +3,10 @@ package com.sa.safetynet.accesscontroller.facedetection;
 import com.sa.safetynet.accesscontroller.empdetection.DetectionServiceImpl;
 import java.util.Scanner;
 
-public class FaceDetectionImpl implements FaceDetection{
+public class FaceDetectionImpl{
 	
 
-	@Override
+	
 	public void sendDetails() {
 		
 		//Scanner object

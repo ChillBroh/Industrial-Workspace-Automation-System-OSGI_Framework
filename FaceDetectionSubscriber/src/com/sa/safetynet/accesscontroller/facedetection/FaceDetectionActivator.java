@@ -28,6 +28,7 @@ public class FaceDetectionActivator implements BundleActivator {
 		PowerService powerService = (PowerService) context.getService(PowerOnStatusReference);
 		
 		boolean isPowerOn = powerService.powerOnStatus("on");
+		FaceDetectionImpl FDA =  new FaceDetectionImpl();
 		
 		System.out.println("Power status: " + isPowerOn);
 		
@@ -52,6 +53,8 @@ public class FaceDetectionActivator implements BundleActivator {
 
 			
 			System.out.println("Face Detection Service Initiated!!!");
+			FDA.sendDetails();
+			
 		}else {
             System.out.println("Power service not available!");
 		}
