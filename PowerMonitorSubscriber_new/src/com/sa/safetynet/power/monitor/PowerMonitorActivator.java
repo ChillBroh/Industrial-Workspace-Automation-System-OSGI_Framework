@@ -6,6 +6,9 @@ import org.osgi.framework.ServiceReference;
 
 import com.sa.safetynet.power.alert.PowerAlert;
 import com.sa.safetynet.power.solar.SolarService;
+import com.sa.safetynet.weather.accontrolsensorsubscriber.ACControlSensorService;
+import com.sa.safetynet.weather.heatcontrolsensorsubscriber.HeatControlSensorService;
+import com.sa.safetynet.weather.lightcontrolsensorsubscriber.LightControlSensorService;
 
 public class PowerMonitorActivator implements BundleActivator {
 

@@ -6,18 +6,21 @@ package com.sa.safetynet.weather.accontrolsensorsubscriber;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
+import org.osgi.framework.ServiceRegistration;
 
 import com.sa.safetynet.weather.WeatherService;
 
 public class Activator implements BundleActivator {
 	private ServiceReference weatherServiceRef;
-    private final ACControlSensorService acControl = new ACControlSensorServiceImpl();
+	ServiceRegistration sensorService;
+	
+   
     private String[] area = {"hall 1", "hall 2", "hall 3", "hall 4"};
 
     @Override
     public void start(BundleContext context) throws Exception {
         System.out.println("AC Controller Starting!");
-
+        ACControlSensorService acControl = new ACControlSensorServiceImpl();
         weatherServiceRef = context.getServiceReference(WeatherService.class.getName());
         if (weatherServiceRef != null) {
             WeatherService weatherService = (WeatherService) context.getService(weatherServiceRef);
@@ -47,6 +50,8 @@ public class Activator implements BundleActivator {
                         System.out.println("Temperature is acceptable (" + temperature + "), turning AC off.");
                         acControl.turnOffAC(area);
                 }
+                
+                
 
             } else {
                 System.out.println("Weather service unavailable!");
@@ -54,6 +59,7 @@ public class Activator implements BundleActivator {
         } else {
             System.out.println("Weather service not found!");
         }
+        sensorService = context.registerService(ACControlSensorService.class.getName(), acControl, null);
     }
 
     @Override

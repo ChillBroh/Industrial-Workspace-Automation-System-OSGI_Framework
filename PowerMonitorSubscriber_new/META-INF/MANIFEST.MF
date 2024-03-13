@@ -10,5 +10,7 @@ Automatic-Module-Name: PowerMonitorSubscriber.new
 Import-Package: com.sa.safetynet.power.alert,
  com.sa.safetynet.power.solar,
  com.sa.safetynet.weather.accontrolsensorsubscriber,
+ com.sa.safetynet.weather.heatcontrolsensorsubscriber,
+ com.sa.safetynet.weather.lightcontrolsensorsubscriber,
  org.osgi.framework;version="1.3.0"
 Bundle-ActivationPolicy: lazy
