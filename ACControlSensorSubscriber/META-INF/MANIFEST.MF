@@ -3,6 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ACControlSensorSubscriber
 Bundle-SymbolicName: ACControlSensorSubscriber
 Bundle-Version: 1.0.0.qualifier
+Export-Package: com.sa.safetynet.weather.accontrolsensorsubscriber
 Bundle-Activator: com.sa.safetynet.weather.accontrolsensorsubscriber.Activator
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Automatic-Module-Name: ACControlSensorSubscriber

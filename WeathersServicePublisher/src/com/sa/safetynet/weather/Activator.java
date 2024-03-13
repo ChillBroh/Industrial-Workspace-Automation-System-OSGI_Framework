@@ -66,10 +66,18 @@ public class Activator implements BundleActivator {
     }
 
     public void stop(BundleContext context) throws Exception {
-        System.out.println("Weather Service Shutting Down!");
+       
         if (serviceRegistration != null) {
             serviceRegistration.unregister();
         }
+        if (emergWeatherServiecReg != null) {
+        	emergWeatherServiecReg.unregister();
+        }
+        
+        context.ungetService(emergServiceRef);
+        context.ungetService(powerServiceRef);
+        
+        System.out.println("Weather Service Shutting Down!");
     }
    
     private float getUserTemperatureInput() {

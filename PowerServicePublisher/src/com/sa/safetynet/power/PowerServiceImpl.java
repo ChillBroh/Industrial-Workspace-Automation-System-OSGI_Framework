@@ -1,41 +1,18 @@
 package com.sa.safetynet.power;
 
 public class PowerServiceImpl implements PowerService, EmergencyHelper{
-	private boolean powerOn;
-	
-	@Override
-	public void startPowerService() {
-		System.out.println("Power System is starting...");
-		powerOnStatus("on");
-		System.out.println("Power System Started");
-	}
+
+
 
 	@Override
 	public boolean powerOnStatus(String status) {
-		if(status.equalsIgnoreCase("on")) {
+		if(status.equalsIgnoreCase("On")) {
 			return true;
 		}
 		return false;
 	}
-	
-	@Override
-	public float powerConsumption() {
-		return 1000.75f;
-	}
-	
-	@Override
-	public boolean startSolarPowerGeneration(String weather, String location) {
-		// TODO Auto-generated method stub
-		return true;
-	}
 
-	@Override
-	public void stopPowerService() {
-		System.out.println("Power System is aborting...");
-		powerOnStatus("off");
-		System.out.println("Power System Stopped");
-	}
-
+	
 	
 	// Falcon
 	@Override

@@ -39,6 +39,10 @@ public class AutomatedDoorActivator implements BundleActivator {
 	public void stop(BundleContext context) throws Exception {
 		System.out.println("Aborting Automated Door System...");
 		autoDoorSystemRegistration.unregister();
+		emergDoorRegistration.unregister();
+		
+		context.ungetService(emergAlertService);
+		
 		System.out.println("Automated Door System Aborted!!!");
 	}
 }

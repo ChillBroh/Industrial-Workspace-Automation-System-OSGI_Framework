@@ -3,6 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: HeatControlSensorSubscriber
 Bundle-SymbolicName: HeatControlSensorSubscriber
 Bundle-Version: 1.0.0.qualifier
+Export-Package: com.sa.safetynet.weather.heatcontrolsensorsubscriber
 Bundle-Activator: com.sa.safetynet.weather.heatcontrolsensorsubscriber.Activator
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Automatic-Module-Name: HeatControlSensorSubscriber
