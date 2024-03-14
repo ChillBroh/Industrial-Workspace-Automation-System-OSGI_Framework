@@ -10,7 +10,7 @@ import com.sa.safetynet.weather.WeatherServiceImpl;
 public class SolarServiceImpl implements SolarService{
 	private final WeatherService weatherService = new WeatherServiceImpl();
 	private final PowerAlert powerAlert = new PowerAlertImpl();
-	private float lightIntensity;
+	private float lightIntensity = weatherService.getLightIntensity();
 	private float contributionPercent = 0;
 	private LocalTime startTime;
 	private LocalTime endTime;
@@ -20,7 +20,7 @@ public class SolarServiceImpl implements SolarService{
 		if(command.equalsIgnoreCase("On")) {
 			System.out.println("Checking for light intesty and weather conditions...");
 			
-			lightIntensity = weatherService.getLightIntensity();
+			
 			if(lightIntensity > 10){
 				startTime = LocalTime.now();
 				setSolarStartTime(startTime);

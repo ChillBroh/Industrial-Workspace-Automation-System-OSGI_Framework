@@ -23,42 +23,49 @@ public class FaceDetectionActivator implements BundleActivator {
 	
 
 	public void start(BundleContext context) throws Exception {
-		
-		PowerOnStatusReference = context.getServiceReference(PowerService.class.getName());
-		PowerService powerService = (PowerService) context.getService(PowerOnStatusReference);
-		
-		boolean isPowerOn = powerService.powerOnStatus("on");
-		FaceDetectionImpl FDA =  new FaceDetectionImpl();
-		
-		System.out.println("Power status: " + isPowerOn);
-		
-		if(isPowerOn) {
-			System.out.println("Initiating Face Detection Service...");
-			
-			
-			faceDetectionServiceReference = context.getServiceReference(DetectionService.class.getName());
-			DetectionService empDetection = (DetectionService)context.getService(faceDetectionServiceReference);
-			
-			controllDoorServiceReference = context.getServiceReference(AutomatedDoorService.class.getName());
-			AutomatedDoorService controllDoor = (AutomatedDoorService) context.getService(controllDoorServiceReference);
-			
-			notificationServiceReference = context.getServiceReference(NotificationSystem.class.getName());
-			NotificationSystem notificationSys = (NotificationSystem) context.getService(notificationServiceReference);
-			
-		
-			
-			checkEmpValidity = empDetection;
-			controllAutoDoor = controllDoor;
-			notifyEmp = notificationSys;
-
-			
-			System.out.println("Face Detection Service Initiated!!!");
-			FDA.sendDetails();
-			
-		}else {
-            System.out.println("Power service not available!");
-		}
-
+	    PowerOnStatusReference = context.getServiceReference(PowerService.class.getName());
+	    if (PowerOnStatusReference != null) {
+	        PowerService powerService = (PowerService) context.getService(PowerOnStatusReference);
+	        boolean isPowerOn = powerService.powerOnStatus("on");
+	        FaceDetectionImpl FDA = new FaceDetectionImpl();
+	        System.out.println("Power status: " + isPowerOn);
+	        
+	        if (isPowerOn) {
+	            System.out.println("Initiating Face Detection Service...");
+	            faceDetectionServiceReference = context.getServiceReference(DetectionService.class.getName());
+	            if (faceDetectionServiceReference != null) {
+	                DetectionService empDetection = (DetectionService) context.getService(faceDetectionServiceReference);
+	                
+	                controllDoorServiceReference = context.getServiceReference(AutomatedDoorService.class.getName());
+	                if (controllDoorServiceReference != null) {
+	                    AutomatedDoorService controllDoor = (AutomatedDoorService) context.getService(controllDoorServiceReference);
+	                    
+	                    notificationServiceReference = context.getServiceReference(NotificationSystem.class.getName());
+	                    if (notificationServiceReference != null) {
+	                        NotificationSystem notificationSys = (NotificationSystem) context.getService(notificationServiceReference);
+	                        
+	                        checkEmpValidity = empDetection;
+	                        controllAutoDoor = controllDoor;
+	                        notifyEmp = notificationSys;
+	                        
+	                        System.out.println("Face Detection Service Initiated!!!");
+	                        FDA.sendDetails();
+	                        return; // Exit the method after successful initialization
+	                    } else {
+	                        System.out.println("Notification system service not available!");
+	                    }
+	                } else {
+	                    System.out.println("Automated door service not available!");
+	                }
+	            } else {
+	                System.out.println("Detection service not available!");
+	            }
+	        } else {
+	            System.out.println("Power is off, cannot initiate face detection service!");
+	        }
+	    } else {
+	        System.out.println("Power service not available!");
+	    }
 	}
 
 	public void stop(BundleContext context) throws Exception {
