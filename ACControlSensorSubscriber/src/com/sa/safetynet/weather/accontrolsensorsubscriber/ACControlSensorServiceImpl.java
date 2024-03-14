@@ -10,7 +10,7 @@ public class ACControlSensorServiceImpl implements ACControlSensorService {
 	public void turnOnAC(String[] areas, int temp) {
 		this.acTemp = temp;
 		for (String area : areas) {
-            System.out.println(area + " AC Off!");
+            System.out.println(area + " AC On!");
             numberOfACsOn++;
         }
 

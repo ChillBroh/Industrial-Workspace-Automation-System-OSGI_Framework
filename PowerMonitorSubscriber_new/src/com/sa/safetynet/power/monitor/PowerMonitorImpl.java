@@ -10,8 +10,8 @@ import com.sa.safetynet.power.alert.PowerAlert;
 import com.sa.safetynet.power.alert.PowerAlertImpl;
 import com.sa.safetynet.power.solar.SolarService;
 import com.sa.safetynet.power.solar.SolarServiceImpl;
-import com.sa.safetynet.weather.accontrolsensorsubscriber.ACControlSensorService;
-import com.sa.safetynet.weather.accontrolsensorsubscriber.ACControlSensorServiceImpl;
+//import com.sa.safetynet.weather.accontrolsensorsubscriber.ACControlSensorService;
+//import com.sa.safetynet.weather.accontrolsensorsubscriber.ACControlSensorServiceImpl;
 import com.sa.safetynet.weather.heatcontrolsensorsubscriber.HeatControlSensorService;
 import com.sa.safetynet.weather.heatcontrolsensorsubscriber.HeatControlSensorServiceImpl;
 import com.sa.safetynet.weather.lightcontrolsensorsubscriber.LightControlSensorService;
@@ -24,7 +24,7 @@ public class PowerMonitorImpl implements PowerMonitor{
 	
 	HeatControlSensorService heatControlSensorService = new HeatControlSensorServiceImpl();
 	
-	ACControlSensorService acControlSensorService = new ACControlSensorServiceImpl();
+//	ACControlSensorService acControlSensorService = new ACControlSensorServiceImpl();
 	
 	LightControlSensorService lightControlSensorService = new LightControlSensorServiceImpl();
 	
@@ -38,7 +38,8 @@ public class PowerMonitorImpl implements PowerMonitor{
 	public float calculatePower() {
 		heatControlSensorService = new HeatControlSensorServiceImpl();
 		int no[] = heatControlSensorService.getTotalHeatersOn();
-		int no1[] = acControlSensorService.getTotalAcOn();
+//		int no1[] = acControlSensorService.getTotalAcOn();
+		int no1[] = {10,10};
 		int no2 = lightControlSensorService.getTotalLightsOn();
 		
 		int total = no[0] + no1[0] + no2;
@@ -54,7 +55,7 @@ public class PowerMonitorImpl implements PowerMonitor{
 		
 		solarPower = powerConsumption * percentage;
 		
-		String directoryPath = "C:\\Users\\umesha_dilshani\\Desktop";
+		String directoryPath = "C:\\Users\\ishar\\Desktop";
         String fileName = "power-consumption-report.txt";
         
         File directory = new File(directoryPath);

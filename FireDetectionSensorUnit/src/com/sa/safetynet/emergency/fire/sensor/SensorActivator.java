@@ -21,9 +21,10 @@ public class SensorActivator implements BundleActivator {
 		serviceReference = context.getServiceReference(EmergServiceInterface.class.getName());
 		
 		EmergServiceInterface emergencyServices = (EmergServiceInterface)context.getService(serviceReference);
+		System.out.println("Fire Detection Sensor is Online!");
 		
 		//Run test class to simulate an emergency situation
-		runTest(emergencyServices);
+//		runTest(emergencyServices);
 		
 	}
 	

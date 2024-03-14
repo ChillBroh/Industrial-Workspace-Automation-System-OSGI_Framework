@@ -1,5 +1,7 @@
 package com.sa.safetynet.emergency.service;
 
+import java.util.Scanner;
+
 /*
  * IT21223594 - Thalangama T.P - Y3S2-WE-2.1
  * 
@@ -13,7 +15,7 @@ public class EmergencyService implements EmergServiceInterface {
 	
 	String emrgType;
 	String location;
-	boolean isEmerg;
+	boolean isEmerg = false;
 	
 	public void overrideDoorLocks(String command) {
 		// TODO Auto-generated method stub
@@ -90,6 +92,7 @@ public class EmergencyService implements EmergServiceInterface {
 
 	@Override
 	public void activateEmergencyProtocol(String location) {
+		Scanner sc = new Scanner(System.in);
 		// TODO Auto-generated method stub
 		this.location = location;
 		isEmerg = true;
@@ -106,6 +109,17 @@ public class EmergencyService implements EmergServiceInterface {
 			overridePowerToFireSuppression("on");
 			overrideDoorLocks("off");
 			
+			System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+			String emgAvailability;
+			do {
+			    System.out.println("Still Working on emergency");
+			    System.out.println("Is Emergency still available in " + location + "?");
+			    emgAvailability = sc.next();
+			    if (emgAvailability.equals("no")) {
+			        this.switchOffEmergencySystem();
+			    }
+			} while (emgAvailability.equals("yes"));
+			
 		}else if(emrgType.equals("gas")) {
 			
 			activateFireAlarm("on");
@@ -115,11 +129,22 @@ public class EmergencyService implements EmergServiceInterface {
 			overrideLightControll("off");
 			overridePowerToVentilationSystem("on");
 			overrideDoorLocks("off");
+			
+			System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+			String emgAvailability;
+			do {
+			    System.out.println("Still Working on emergency");
+			    System.out.println("Is Emergency still available in " + location + "?");
+			    emgAvailability = sc.next();
+			    if (emgAvailability.equals("no")) {
+			        this.switchOffEmergencySystem();
+			    }
+			} while (emgAvailability.equals("yes"));
 		}else {
 			System.out.println("Emergency Type is not recognizable!!");
 		}
 		
-		
+		sc.close();
 	}
 
 
