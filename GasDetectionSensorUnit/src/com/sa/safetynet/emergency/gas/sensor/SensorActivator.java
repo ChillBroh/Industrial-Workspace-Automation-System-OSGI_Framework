@@ -17,9 +17,10 @@ public void start(BundleContext context) throws Exception {
 		serviceReference = context.getServiceReference(EmergServiceInterface.class.getName());
 		
 		EmergServiceInterface emergencyServices = (EmergServiceInterface)context.getService(serviceReference);
+		System.out.println("Gas Detection Sensor is now online!");
 		
 		//Run test class to simulate an emergency situation
-		runTest(emergencyServices);
+//		runTest(emergencyServices);
 	}
 
 

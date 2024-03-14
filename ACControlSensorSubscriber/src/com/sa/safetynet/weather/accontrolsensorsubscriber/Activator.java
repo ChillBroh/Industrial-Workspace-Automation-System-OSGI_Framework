@@ -6,18 +6,21 @@ package com.sa.safetynet.weather.accontrolsensorsubscriber;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
+import org.osgi.framework.ServiceRegistration;
 
 import com.sa.safetynet.weather.WeatherService;
 
 public class Activator implements BundleActivator {
 	private ServiceReference weatherServiceRef;
-    private final ACControlSensorService acControl = new ACControlSensorServiceImpl();
-    private String[] area = {"hall 1", "hall 2", "hall 3", "hall 4"};
+	ServiceRegistration sensorService;
+	
+   
+    private String[] area = {"area 1 ", "area 2 ", "area 3 ", "area 4 "};
 
     @Override
     public void start(BundleContext context) throws Exception {
         System.out.println("AC Controller Starting!");
-
+        ACControlSensorService acControl = new ACControlSensorServiceImpl();
         weatherServiceRef = context.getServiceReference(WeatherService.class.getName());
         if (weatherServiceRef != null) {
             WeatherService weatherService = (WeatherService) context.getService(weatherServiceRef);
@@ -27,26 +30,26 @@ public class Activator implements BundleActivator {
 
                 int tempInt = Math.round(temperature);
 
-                switch (tempInt) {
-                    case 31:
-                    case Integer.MAX_VALUE:
-                        System.out.println("Temperature is extremely high (" + temperature + "), setting AC to 16°C!");
-                        acControl.turnOnAC(area, 16);
-                        break;
-                    case 26:
-                    case 30:
-                        System.out.println("Temperature is high (" + temperature + "), setting AC to 18°C!");
-                        acControl.turnOnAC(area, 18);
-                        break;
-                    case 21:
-                    case 25:
-                        System.out.println("Temperature is warm (" + temperature + "), setting AC to 20°C!");
-                        acControl.turnOnAC(area, 20);
-                        break;
-                    default:
-                        System.out.println("Temperature is acceptable (" + temperature + "), turning AC off.");
+                if (tempInt > 31) {
+                    System.out.println("Temperature is extremely high (" + temperature + "), setting AC to 16°C!");
+                    acControl.turnOnAC(area, 16);
+                } else if (tempInt >= 26 && tempInt <= 30) {
+                    System.out.println("Temperature is high (" + temperature + "), setting AC to 18°C!");
+                    acControl.turnOnAC(area, 18);
+                } else if (tempInt >= 21 && tempInt <= 25) {
+                    System.out.println("Temperature is warm (" + temperature + "), setting AC to 20°C!");
+                    acControl.turnOnAC(area, 20);
+                } else {
+                    if (tempInt < 20) {
+                        System.out.println("Temperature is low (" + temperature + "), turning AC off.");
                         acControl.turnOffAC(area);
+                    } else {
+                        System.out.println("Temperature is acceptable (" + temperature + "), no action needed.");
+                    }
                 }
+
+                
+                
 
             } else {
                 System.out.println("Weather service unavailable!");
@@ -54,6 +57,7 @@ public class Activator implements BundleActivator {
         } else {
             System.out.println("Weather service not found!");
         }
+        sensorService = context.registerService(ACControlSensorService.class.getName(), acControl, null);
     }
 
     @Override

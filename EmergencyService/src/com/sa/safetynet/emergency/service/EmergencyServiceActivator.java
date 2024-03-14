@@ -71,6 +71,10 @@ public class EmergencyServiceActivator implements BundleActivator {
 		System.out.println("Emergency System is now offline!");
 		sensorServiceRegister.unregister();
 		moduleAlertServiceRegister.unregister();
+		bundleContext.ungetService(emergDoorReference);
+		bundleContext.ungetService(emergServiceReference);
+		bundleContext.ungetService(emergWeatherReference);
+		bundleContext.ungetService(setEmergAlertReference);
 	}
 
 }

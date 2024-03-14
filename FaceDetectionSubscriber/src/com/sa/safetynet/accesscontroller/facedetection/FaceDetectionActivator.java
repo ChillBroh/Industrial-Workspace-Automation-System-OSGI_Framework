@@ -64,6 +64,9 @@ public class FaceDetectionActivator implements BundleActivator {
 	public void stop(BundleContext context) throws Exception {
 		System.out.println("Aborting Face Detection Service...");
 		context.ungetService(faceDetectionServiceReference);
+		context.ungetService(PowerOnStatusReference);
+		context.ungetService(controllDoorServiceReference);
+		context.ungetService(notificationServiceReference);
 		System.out.println("Face Detection Service Aborted!!!");
 	}
 
