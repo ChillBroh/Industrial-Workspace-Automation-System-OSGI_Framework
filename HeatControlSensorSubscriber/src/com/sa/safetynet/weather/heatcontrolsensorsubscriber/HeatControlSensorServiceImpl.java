@@ -11,7 +11,7 @@ public class HeatControlSensorServiceImpl implements HeatControlSensorService{
 	public void turnOnHeater(String[] areas, int temp) {
 		this.heatTemp = temp;
 		for (String area : areas) {
-            System.out.println(area + " Heater Off!");
+            System.out.println(area + " Heater On!");
             numberOfHeatersOn++; 
         }
 		
@@ -20,7 +20,7 @@ public class HeatControlSensorServiceImpl implements HeatControlSensorService{
 	@Override
 	public void turnOffHeater(String[] areas) {
 		for (String area : areas) {
-            System.out.println(area + "Heater On!");
+            System.out.println(area + "Heater Off!");
             numberOfHeatersOn--; 
         }
 		
