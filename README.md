@@ -5,4 +5,9 @@ The problem which motivated the implementation of SafetyNet was the absence of a
 A key advantage of SafetyNet is its inter-module communication capability, which facilitates control over all connected systems by streamlining the operations and increasing efficiency. In summary, SafetyNet will provide the ability to control the modules, namely power, solar, emergency control, lightning, AC, and heating based on weather, and face recognition as a single integrated system.</p>
 <h2>System Overview Diagram</h2>
 <img src="https://github.com/ChillBroh/SA-Assignment-1-OSGI_Framework/blob/master/System%20Overview%20Diagram.png"></img>
-
+<h2>Publisher Subscriber Connection Diagram.png</h2>
+<img src="https://github.com/ChillBroh/SA-Assignment-1-OSGI_Framework/blob/master/Publisher%20Subscriber%20Connection%20Diagram.png"></img>
+<h2>Flow Chart</h2>
+<img src="https://github.com/ChillBroh/SA-Assignment-1-OSGI_Framework/blob/master/flowchart.jpeg"></img>
+<h2>Dependency Diagram</h2>
+<img src="https://github.com/ChillBroh/SA-Assignment-1-OSGI_Framework/blob/master/Dependency%20Diagram.png"></img>
