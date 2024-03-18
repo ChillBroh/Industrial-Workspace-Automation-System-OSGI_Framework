@@ -1,9 +1,11 @@
 <h1>Industrial Workspace Automation System</h1>
 <h2>Contributors</h2>
-<a href="https://github.com/umeshadilshani">Umesha Dilshani</a> (Leader) <br/>
-<a href="https://github.com/ChillBroh">Ishara Madusanka</a><br/>
-<a href="https://github.com/X-pose">Thathsara Thalangama</a><br/>
-<a href="https://github.com/TharushiDissanayake">Tharushi Dissanayake</a><br/>
+<ol>
+  <li><a href="https://github.com/umeshadilshani">Umesha Dilshani</a> (Leader) </li>
+  <li><a href="https://github.com/ChillBroh">Ishara Madusanka</a></li>
+  <li><a href="https://github.com/X-pose">Thathsara Thalangama</a></li>
+  <li><a href="https://github.com/TharushiDissanayake">Tharushi Dissanayake</a></li>
+</ol>
 <h2>Introduction</h2>
 <p>SafetyNet is a fully-fledged application built on top of the OSGi (Open Service Gateway Initiative) framework. The system has been built using Java and follows the microkernel architecture, which highlights the features and behaviors of the observer design pattern.
 The problem which motivated the implementation of SafetyNet was the absence of a comprehensive, automated industrial workplace management solution that not only provides a solution for power management, including the integration of solar energy to promote environmental sustainability, but also automates the control of air conditioning (AC), lighting, and heating based on weather conditions, reducing the need of manual intervention. Also, as a whole, the system will provide an overall energy consumption report at the end of the day, enabling tracking of power consumption. In industrial settings, security is critical because of the significant number of employed employers. SafetyNet addresses this by including an emergency system designed to enhance workplace safety. Also, the automated door-locking system, integrated with a face recognition system, will ensure the entry of authorized people to the workplace by increasing security measures.
