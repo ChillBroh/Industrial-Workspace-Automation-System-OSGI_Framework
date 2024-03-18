@@ -26,6 +26,7 @@ public class PowerServiceActivator implements BundleActivator {
 		
 		powerService.powerOnStatus("On");
 		System.out.println("Power Service Started!!!");
+		this.displayService();
 	}
 
 
@@ -34,6 +35,25 @@ public class PowerServiceActivator implements BundleActivator {
 		powerServiceRegistration.unregister();
 		emergServiceRegistration.unregister();
 		
+	}
+	
+    private void displayService(){
+    	
+      	System.out.println("---------------------------------------------------------------------");
+    	System.out.println();
+    	System.out.println("     _______  ____       _______   _______   ________   ___    ___    _ _ _  __  ________   ________ tm");
+    	System.out.println("    /______/ / /\\ \\     |   ____| |  _____| |__   ___|  \\  \\  /  /   |     \\ | | |  _____| |__   ___|");
+    	System.out.println("   /_/___   / /  \\ \\    |  |____  | |_____     |  |      \\  \\/  /    |  |\\  \\| | | |____      |  |");
+    	System.out.println("  /______/ / /____\\ \\   |   ____| |  _____|    |  |       \\    /     |  | \\    | | _____|     |  |");
+    	System.out.println(" _____/ / / /------\\ \\  |  |      | |_____     |  |        |  |      |  |  \\   | | |_____     |  |");
+    	System.out.println("/______/ /_/        \\_\\ |__|      |_______|    |__|        |__|      |__|   \\__| |_______|    |__|");
+    	System.out.println("");
+    	System.out.println("              -------------------------------------------");
+    	System.out.println("              // Welcome To SafetyNet Service Console //");
+    	System.out.println("              -------------------------------------------");
+    	System.out.println();
+    	
+    	
 	}
 
 }

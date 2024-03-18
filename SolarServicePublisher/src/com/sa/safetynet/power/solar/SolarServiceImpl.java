@@ -2,6 +2,8 @@ package com.sa.safetynet.power.solar;
 
 import java.time.LocalTime;
 
+import org.osgi.framework.ServiceReference;
+
 import com.sa.safetynet.power.alert.PowerAlert;
 import com.sa.safetynet.power.alert.PowerAlertImpl;
 import com.sa.safetynet.weather.WeatherService;
@@ -16,15 +18,15 @@ public class SolarServiceImpl implements SolarService{
 	private LocalTime endTime;
 	
 	@Override
-	public void activateSolar(String command) {
+	public void activateSolar(WeatherService serReference, String command) {
 		if(command.equalsIgnoreCase("On")) {
-			System.out.println("Checking for light intesty and weather conditions...");
+			System.out.println("Checking for light intensity and weather conditions...");
 			
-			lightIntensity = weatherService.getLightIntensity();
+			lightIntensity = serReference.getLightIntensity();
 			if(lightIntensity > 10){
 				startTime = LocalTime.now();
 				setSolarStartTime(startTime);
-				powerAlert.displayAlert("Solar System ativated at : " + startTime);
+				powerAlert.displayAlert("Solar System ativated at : " + getSolarStartTime());
 				if(lightIntensity > 20) {
 					setContributionPercent(0.5f);
 					powerAlert.displayAlert("Contributing to 50% of power generation...");
@@ -34,11 +36,7 @@ public class SolarServiceImpl implements SolarService{
 				}
 			}else {
 				System.out.println("Light Intensity is low...Solar power generation aborting...");
-			}			
-		}else {
-			endTime = LocalTime.now();
-			setSolarEndTime(endTime);
-			powerAlert.displayAlert("Solar power generation aborting...");
+			}
 		}
 	}
 
@@ -70,5 +68,12 @@ public class SolarServiceImpl implements SolarService{
 	@Override
 	public LocalTime getSolarEndTime() {
 		return endTime;
+	}
+
+	@Override
+	public void deActivateSolar(String command) {
+		endTime = LocalTime.now();
+		setSolarEndTime(endTime);
+		powerAlert.displayAlert("Solar power generation aborting...");		
 	}
 }

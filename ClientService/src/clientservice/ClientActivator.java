@@ -27,12 +27,6 @@ public class ClientActivator implements BundleActivator {
     @Override
     public void start(BundleContext context) throws Exception {
         System.out.println("Client Starting...");
-
-        // Start power service
-        powerServiceActivator.start(context);
-        // Start emergency service
-        emergencyServiceActivator.start(context);
-
         // Retrieve emergency service reference
         ServiceReference<EmergServiceInterface> emergencyServiceReference =context.getServiceReference(EmergServiceInterface.class);
 
@@ -47,7 +41,7 @@ public class ClientActivator implements BundleActivator {
                 handleEmergency();
             } 
             System.out.println("No emergency situations detected.");
-            this.displayService(context);
+            this.displayService();
             
         } else {
             System.out.println("Emergency service not available.");
@@ -70,8 +64,6 @@ public class ClientActivator implements BundleActivator {
     public void stop(BundleContext context) throws Exception {
         System.out.println("Client Shutting Down...");
         // Stop emergency service
-        emergencyServiceActivator.stop(context);;
-        powerServiceActivator.stop(context);;
     }
 
     private boolean checkEmergencySituation() {
@@ -102,7 +94,7 @@ public class ClientActivator implements BundleActivator {
         }
     }
     
-    private void displayService(BundleContext context) throws Exception {
+    private void displayService(){
     	
       	System.out.println("---------------------------------------------------------------------");
     	System.out.println();

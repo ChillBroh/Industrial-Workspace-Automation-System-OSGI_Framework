@@ -12,14 +12,14 @@ public class AutomatedDoorServiceImpl implements AutomatedDoorService, Emergency
 		// Create a Timer object
 		Timer timer = new Timer();
 
-        // Schedule a task to run after 30 seconds
+        // Schedule a task to run after 5 seconds
         timer.schedule(new TimerTask() {
         	
             @Override
             public void run() {
                 doorLock(location);
             }
-        }, 30 * 1000);
+        }, 5 * 1000);
 		
 		
 	}

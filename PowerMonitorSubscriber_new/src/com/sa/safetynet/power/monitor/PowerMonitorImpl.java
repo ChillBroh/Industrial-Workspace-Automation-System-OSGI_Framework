@@ -24,8 +24,6 @@ public class PowerMonitorImpl implements PowerMonitor{
 	
 	HeatControlSensorService heatControlSensorService = new HeatControlSensorServiceImpl();
 	
-//	ACControlSensorService acControlSensorService = new ACControlSensorServiceImpl();
-	
 	LightControlSensorService lightControlSensorService = new LightControlSensorServiceImpl();
 	
 	PowerAlert powerAlert = new PowerAlertImpl();
@@ -35,25 +33,22 @@ public class PowerMonitorImpl implements PowerMonitor{
 	Scanner sc = new Scanner(System.in);
 
 	@Override
-	public float calculatePower() {
+	public float calculatePower(HeatControlSensorService heatControlSensorService, LightControlSensorService lightControlSensorService, SolarService solarService) {
 		heatControlSensorService = new HeatControlSensorServiceImpl();
-		int no[] = heatControlSensorService.getTotalHeatersOn();
-//		int no1[] = acControlSensorService.getTotalAcOn();
-		int no1[] = {10,10};
-		int no2 = lightControlSensorService.getTotalLightsOn();
-		
-		int total = no[0] + no1[0] + no2;
-		
-		return no[0];
+		int heaters[] = heatControlSensorService.getTotalHeatersOn();
+		int lights = lightControlSensorService.getTotalLightsOn();
+		int total = (heaters[0]  + lights) * 50;
+		return total;
 	}
 
 	@Override
-	public void generateReport() {
-		powerConsumption = calculatePower();
+	public void generateReport(HeatControlSensorService heatControlSensorService, LightControlSensorService lightControlSensorService, SolarService solarService) {
+		powerConsumption = calculatePower(heatControlSensorService, lightControlSensorService, solarService);
 		
+		System.out.println(powerConsumption);
 		float percentage = solarService.getContributionPercent();
 		
-		solarPower = powerConsumption * percentage;
+		solarPower = powerConsumption * 0.5F;
 		
 		String directoryPath = "C:\\Users\\ishar\\Desktop";
         String fileName = "power-consumption-report.txt";
@@ -69,10 +64,8 @@ public class PowerMonitorImpl implements PowerMonitor{
             FileWriter writer = new FileWriter(file);
             writer.write("Date : " + LocalDate.now() + "\n");
             writer.write("Total Power Consumption : " + powerConsumption + "\n");
-            writer.write("Solar System starts at : " + solarService.getSolarStartTime() + "\n");
-            solarService.activateSolar("Off");
-            writer.write("Solar System ends at : " + solarService.getSolarEndTime() + "\n");
-            writer.write("Solar Contribution Percetage : " + percentage + "\n");
+            solarService.deActivateSolar("Off");
+            writer.write("Solar Contribution Percetage : " + "50%" + "\n");
             writer.write("Generated solar power : " + solarPower + "\n");
             writer.write("Power consumption through the grid : " + (powerConsumption - solarPower) + "\n");
             writer.close();

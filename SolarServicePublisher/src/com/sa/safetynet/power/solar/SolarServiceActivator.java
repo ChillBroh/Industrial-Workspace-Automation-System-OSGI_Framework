@@ -24,7 +24,7 @@ public class SolarServiceActivator implements BundleActivator {
 		
 		System.out.println("Starting Solar System...");
 		solarService = new SolarServiceImpl();
-		solarService.activateSolar("On");
+		solarService.activateSolar(weatherService, "On");
 	}
 
 	public void stop(BundleContext context) throws Exception {

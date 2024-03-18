@@ -34,9 +34,7 @@ public class FaceDetectionImpl{
 	    	
 	        System.out.println("Credentials are invalid.");
 	    }
-		
-		// Close scanner
-        sc.close();
+
 			
 	}
 	
